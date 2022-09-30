@@ -36,7 +36,7 @@
                 android:layout_height="65dp" />
 
             <Button
-                android:id="@+id/button"
+                android:id="@+id/button_play"
                 android:layout_width="194dp"
                 android:layout_height="70dp"
                 android:text="PLAY"
@@ -79,7 +79,7 @@
                 android:layout_height="24dp" />
 
             <TextView
-                android:id="@+id/textView6"
+                android:id="@+id/high_score"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="SCORE"
@@ -103,7 +103,7 @@
                 android:layout_height="27dp" />
 
             <TextView
-                android:id="@+id/textView8"
+                android:id="@+id/prev_score"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="SCORE"
