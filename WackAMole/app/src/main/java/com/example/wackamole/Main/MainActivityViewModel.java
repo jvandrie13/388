@@ -1,4 +1,4 @@
-package com.example.wackamole;
+package com.example.wackamole.Main;
 
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;

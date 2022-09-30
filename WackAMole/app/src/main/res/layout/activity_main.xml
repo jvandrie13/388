@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    tools:context=".Main.MainActivity">
 
     <LinearLayout
         android:id="@+id/linearLayout"
@@ -43,6 +43,7 @@
                 android:id="@+id/button_play"
                 android:layout_width="194dp"
                 android:layout_height="87dp"
+                android:onClick="onClickPlay"
                 android:text="PLAY"
                 android:textAlignment="center"
                 android:textSize="24sp"
