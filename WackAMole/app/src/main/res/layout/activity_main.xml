@@ -16,7 +16,7 @@
 
         <Space
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="48dp" />
 
         <TextView
             android:id="@+id/textView"
@@ -24,7 +24,11 @@
             android:layout_height="wrap_content"
             android:text="Wack A Mole"
             android:textAlignment="center"
-            android:textSize="20sp" />
+            android:textSize="34sp" />
+
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="38dp" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -33,25 +37,21 @@
 
             <Space
                 android:layout_width="113dp"
-                android:layout_height="65dp" />
+                android:layout_height="match_parent" />
 
             <Button
                 android:id="@+id/button_play"
                 android:layout_width="194dp"
-                android:layout_height="70dp"
+                android:layout_height="87dp"
                 android:text="PLAY"
                 android:textAlignment="center"
                 android:textSize="24sp"
                 tools:ignore="TouchTargetSizeCheck" />
 
             <Space
-                android:layout_width="135dp"
-                android:layout_height="55dp" />
+                android:layout_width="138dp"
+                android:layout_height="match_parent" />
         </LinearLayout>
-
-        <Space
-            android:layout_width="match_parent"
-            android:layout_height="77dp" />
 
         <Space
             android:layout_width="match_parent"
@@ -64,7 +64,7 @@
 
             <Space
                 android:layout_width="match_parent"
-                android:layout_height="141dp" />
+                android:layout_height="102dp" />
 
             <TextView
                 android:id="@+id/textView5"
