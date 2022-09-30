@@ -5,7 +5,7 @@ import androidx.lifecycle.MutableLiveData;
 public class WhackViewModel {
     public MutableLiveData<Integer> currentScore;
     public MutableLiveData<Integer> lives;
-    
+
     public MutableLiveData<Integer> getCurrentScore() {
         if (currentScore == null) {
             currentScore = new MutableLiveData<Integer>(0);
