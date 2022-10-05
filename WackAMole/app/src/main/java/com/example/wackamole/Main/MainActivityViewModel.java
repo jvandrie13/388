@@ -6,6 +6,8 @@ import androidx.lifecycle.ViewModel;
 public class MainActivityViewModel extends ViewModel {
     public MutableLiveData<Integer> highScore;
     public MutableLiveData<Integer> prevScore;
+    public MutableLiveData<Integer> currScore;
+    public MutableLiveData<Integer> visibleMole;
 
     public MutableLiveData<Integer> getHighScore() {
         if (highScore == null) {
@@ -22,4 +24,21 @@ public class MainActivityViewModel extends ViewModel {
         }
         return prevScore;
     }
+
+    public MutableLiveData<Integer> getCurrScore() {
+        if (currScore == null) {
+            currScore = new MutableLiveData<Integer>(0);
+            currScore.setValue(0);
+        }
+        return currScore;
+    }
+
+    public MutableLiveData<Integer> getVisibleMole() {
+        if (visibleMole == null) {
+            visibleMole = new MutableLiveData<Integer>(0);
+            currScore.setValue(0);
+        }
+        return visibleMole;
+    }
+
 }
