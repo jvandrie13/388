@@ -26,6 +26,7 @@ public class Whack extends AppCompatActivity {
     ImageView[] moles;
     boolean clicked;
     Integer lives;
+    long delayMillis = 3000;
 
 
     @Override
@@ -44,19 +45,22 @@ public class Whack extends AppCompatActivity {
         }
 
         clicked = false;
-        lives = 3;
+        lives = 4;
         livesLeft.setText(lives.toString());
 
         handler = new Handler();
         runnable = new Runnable() {
             @Override
             public void run() {
+                lives = lives - 1;
                 int prevMole = model.getVisibleMole().getValue();
                 moles[prevMole].setVisibility(View.INVISIBLE);
                 int random = new Random().nextInt(9);
                 model.getVisibleMole().setValue(random);
                 moles[random].setVisibility(View.VISIBLE);
-                handler.postDelayed(this, 1000);
+                handler.postDelayed(this, delayMillis);
+                delayMillis = delayMillis - 10;
+                livesLeft.setText(lives.toString());
             }
         };
 
@@ -76,6 +80,7 @@ public class Whack extends AppCompatActivity {
     }
 
     public void onClickMole(View view){
+        lives = lives + 1;
         model.getCurrScore().setValue(model.getCurrScore().getValue()+10);
         moles[model.getVisibleMole().getValue()].setVisibility(View.INVISIBLE);
         clicked = true;
