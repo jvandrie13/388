@@ -5,6 +5,9 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
+import android.content.Context;
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
@@ -27,7 +30,6 @@ public class Whack extends AppCompatActivity {
     Handler handler;
     Runnable runnable;
     ImageView[] moles;
-    boolean clicked;
     Integer lives;
     long delayMillis = 3000;
 
@@ -47,7 +49,6 @@ public class Whack extends AppCompatActivity {
             moles[i].setVisibility(View.INVISIBLE);
         }
 
-        clicked = false;
         lives = 4;
         livesLeft.setText(lives.toString());
 
@@ -56,21 +57,17 @@ public class Whack extends AppCompatActivity {
             @Override
             public void run() {
                 lives = lives - 1;
-                if(lives < 0){
-                    handler.removeCallbacks(runnable);
-                    Intent gameOverIntent = new Intent(Whack.this, GameOver.class);
-                    startActivity(gameOverIntent);
-                }else{
-                    int prevMole = model.getVisibleMole().getValue();
-                    moles[prevMole].setVisibility(View.INVISIBLE);
-                    int random = new Random().nextInt(9);
-                    model.getVisibleMole().setValue(random);
-                    moles[random].setVisibility(View.VISIBLE);
-                    handler.postDelayed(this, delayMillis);
-                    delayMillis = delayMillis - 10;
-                    livesLeft.setText(lives.toString());
+                int prevMole = model.getVisibleMole().getValue();
+                moles[prevMole].setVisibility(View.INVISIBLE);
+                int random = new Random().nextInt(9);
+                model.getVisibleMole().setValue(random);
+                moles[random].setVisibility(View.VISIBLE);
+                handler.postDelayed(this, delayMillis);
+                delayMillis = delayMillis - 10;
+                livesLeft.setText(lives.toString());
+                if (lives == 0){
+                    onGameOver();
                 }
-
             }
         };
 
@@ -93,6 +90,30 @@ public class Whack extends AppCompatActivity {
         lives = lives + 1;
         model.getCurrScore().setValue(model.getCurrScore().getValue()+10);
         moles[model.getVisibleMole().getValue()].setVisibility(View.INVISIBLE);
-        clicked = true;
+    }
+
+    public void onGameOver(){
+        if (model.getCurrScore().getValue() > model.getHighScore().getValue()){
+            model.getHighScore().setValue(model.getCurrScore().getValue());
+        }
+        handler.removeCallbacks(runnable);
+        model.getPrevScore().setValue(model.getCurrScore().getValue());
+
+        SharedPreferences sharedPref = getSharedPreferences("application", Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPref.edit();
+        editor.putString("HIGH_SCORE", model.getHighScore().getValue().toString());
+        editor.putString("PREV_SCORE", model.getPrevScore().getValue().toString());
+        editor.apply();
+    }
+
+    public void onClickBack(View view){
+        handler.removeCallbacks(runnable);
+        Intent intent = new Intent(Whack.this, MainActivity.class);
+        String hScore = model.getHighScore().getValue().toString();
+        String pScore = model.getPrevScore().getValue().toString();
+        intent.putExtra(hScore, model.getHighScore().getValue());
+        intent.putExtra(pScore, model.getPrevScore().getValue());
+
+        Whack.this.startActivity(intent);
     }
 }
