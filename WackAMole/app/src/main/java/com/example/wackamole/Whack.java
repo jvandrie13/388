@@ -104,6 +104,8 @@ public class Whack extends AppCompatActivity {
         editor.putString("HIGH_SCORE", model.getHighScore().getValue().toString());
         editor.putString("PREV_SCORE", model.getPrevScore().getValue().toString());
         editor.apply();
+        Intent gameOvaIntent = new Intent(Whack.this, GameOver.class);
+        startActivity(gameOvaIntent);
     }
 
     public void onClickBack(View view){
