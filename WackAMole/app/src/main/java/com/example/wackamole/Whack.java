@@ -56,19 +56,21 @@ public class Whack extends AppCompatActivity {
             @Override
             public void run() {
                 lives = lives - 1;
-//                if(lives < 0){
-//                    Intent gameOverIntent = new Intent(Whack.this, GameOver.class);
-//                    Whack.this.startActivity(gameOverIntent);
-//                    return;
-//                }
-                int prevMole = model.getVisibleMole().getValue();
-                moles[prevMole].setVisibility(View.INVISIBLE);
-                int random = new Random().nextInt(9);
-                model.getVisibleMole().setValue(random);
-                moles[random].setVisibility(View.VISIBLE);
-                handler.postDelayed(this, delayMillis);
-                delayMillis = delayMillis - 10;
-                livesLeft.setText(lives.toString());
+                if(lives < 0){
+                    handler.removeCallbacks(runnable);
+                    Intent gameOverIntent = new Intent(Whack.this, GameOver.class);
+                    startActivity(gameOverIntent);
+                }else{
+                    int prevMole = model.getVisibleMole().getValue();
+                    moles[prevMole].setVisibility(View.INVISIBLE);
+                    int random = new Random().nextInt(9);
+                    model.getVisibleMole().setValue(random);
+                    moles[random].setVisibility(View.VISIBLE);
+                    handler.postDelayed(this, delayMillis);
+                    delayMillis = delayMillis - 10;
+                    livesLeft.setText(lives.toString());
+                }
+
             }
         };
 
