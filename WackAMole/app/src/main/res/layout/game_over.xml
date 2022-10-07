@@ -41,7 +41,7 @@
                 android:id="@+id/button_play"
                 android:layout_width="194dp"
                 android:layout_height="87dp"
-                android:onClick="onClickPlay"
+                android:onClick="onClickPlayAgain"
                 android:text="Play Again"
                 android:textAlignment="center"
                 android:textSize="24sp"

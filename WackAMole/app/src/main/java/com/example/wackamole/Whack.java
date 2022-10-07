@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.SystemClock;
@@ -12,7 +13,9 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.example.wackamole.Main.MainActivity;
 import com.example.wackamole.Main.MainActivityViewModel;
+import com.example.wackamole.GameOver;
 
 import java.util.Random;
 
@@ -53,6 +56,11 @@ public class Whack extends AppCompatActivity {
             @Override
             public void run() {
                 lives = lives - 1;
+//                if(lives < 0){
+//                    Intent gameOverIntent = new Intent(Whack.this, GameOver.class);
+//                    Whack.this.startActivity(gameOverIntent);
+//                    return;
+//                }
                 int prevMole = model.getVisibleMole().getValue();
                 moles[prevMole].setVisibility(View.INVISIBLE);
                 int random = new Random().nextInt(9);
