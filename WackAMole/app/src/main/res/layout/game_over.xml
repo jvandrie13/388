@@ -78,7 +78,7 @@
                 android:layout_height="24dp" />
 
             <TextView
-                android:id="@+id/high_score"
+                android:id="@+id/score_go"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="SCORE"
@@ -102,7 +102,7 @@
                 android:layout_height="27dp" />
 
             <TextView
-                android:id="@+id/prev_score"
+                android:id="@+id/high_score_go"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="SCORE"

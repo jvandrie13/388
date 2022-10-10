@@ -29,8 +29,8 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        highScore = findViewById(R.id.high_score);
-        prevScore = findViewById(R.id.prev_score);
+        highScore = findViewById(R.id.score_go);
+        prevScore = findViewById(R.id.high_score_go);
         playButton = findViewById(R.id.button_play);
         model = new ViewModelProvider(this).get(MainActivityViewModel.class);
         sharedPref = getSharedPreferences("application", Context.MODE_PRIVATE);
