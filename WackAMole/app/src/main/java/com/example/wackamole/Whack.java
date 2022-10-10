@@ -21,6 +21,9 @@ import com.example.wackamole.Main.MainActivityViewModel;
 
 import java.util.Random;
 
+/**
+ * This class is the main game screen for wack a mole
+ */
 public class Whack extends AppCompatActivity {
     private TextView highScore;
     private TextView currScore;
@@ -35,7 +38,10 @@ public class Whack extends AppCompatActivity {
     SharedPreferences.Editor editor;
     MediaPlayer mp;
 
-
+    /**
+     * creates the whack a mole game screen
+     * @param savedInstanceState
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -60,6 +66,9 @@ public class Whack extends AppCompatActivity {
 
         handler = new Handler();
         runnable = new Runnable() {
+            /**
+             * sets moles and checks if you have enough lives to keep playing
+             */
             @Override
             public void run() {
                 lives = lives - 1;
@@ -92,6 +101,10 @@ public class Whack extends AppCompatActivity {
         handler.postAtTime(runnable, SystemClock.uptimeMillis());
     }
 
+    /**
+     * adds 10 pts to your score when a mole is clicked
+     * @param view
+     */
     public void onClickMole(View view) {
         mp.start();
         lives = lives + 1;
@@ -99,6 +112,9 @@ public class Whack extends AppCompatActivity {
         moles[model.getVisibleMole().getValue()].setVisibility(View.INVISIBLE);
     }
 
+    /**
+     * sets the high score and previous score, ends the runnable, and directs user to the game over screen
+     */
     public void onGameOver() {
         if (model.getCurrScore().getValue() > Integer.parseInt(sharedPref.getString("HIGH_SCORE", "0"))) {
             editor.putString("HIGH_SCORE", model.getCurrScore().getValue().toString());
@@ -112,6 +128,10 @@ public class Whack extends AppCompatActivity {
         startActivity(gameOvaIntent);
     }
 
+    /**
+     * when the user clicks the back button they are directed back to the home page
+     * @param view
+     */
     public void onClickBack(View view) {
         handler.removeCallbacks(runnable);
         Intent intent = new Intent(Whack.this, MainActivity.class);

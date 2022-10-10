@@ -9,12 +9,18 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
 
-
+/**
+ * This class represents the game over page
+ */
 public class GameOver extends AppCompatActivity {
     private TextView score;
     private TextView highScore;
     SharedPreferences sharedPref;
 
+    /**
+     * creates the game over view
+     * @param savedInstanceState
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -29,6 +35,11 @@ public class GameOver extends AppCompatActivity {
 
 
     };
+
+    /**
+     * Switches to the game play screen (wack) when the play button is clicked
+     * @param view
+     */
     public void onClickPlayAgain(View view) {
         Intent whackIntent = new Intent(GameOver.this, Whack.class);
         GameOver.this.startActivity(whackIntent);

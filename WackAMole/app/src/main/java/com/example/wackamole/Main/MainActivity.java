@@ -16,6 +16,9 @@ import android.widget.TextView;
 import com.example.wackamole.R;
 import com.example.wackamole.Whack;
 
+/**
+ * The main activity for the app
+ */
 public class MainActivity extends AppCompatActivity {
     private TextView highScore;
     private TextView prevScore;
@@ -23,7 +26,10 @@ public class MainActivity extends AppCompatActivity {
     public MainActivityViewModel model;
     SharedPreferences sharedPref;
 
-
+    /**
+     * Creates the main activity view
+     * @param savedInstanceState
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -47,6 +53,10 @@ public class MainActivity extends AppCompatActivity {
         model.getPrevScore().observe(this, scoreObserver);
     }
 
+    /**
+     * Switches to the game play screen (wack) when the play button is clicked
+     * @param view
+     */
     public void onClickPlay(View view) {
         Intent whackIntent = new Intent(MainActivity.this, Whack.class);
         MainActivity.this.startActivity(whackIntent);
