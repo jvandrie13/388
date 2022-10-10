@@ -21,6 +21,8 @@ public class MainActivity extends AppCompatActivity {
     private TextView prevScore;
     private Button playButton;
     public MainActivityViewModel model;
+    SharedPreferences sharedPref;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,12 +33,13 @@ public class MainActivity extends AppCompatActivity {
         prevScore = findViewById(R.id.prev_score);
         playButton = findViewById(R.id.button_play);
         model = new ViewModelProvider(this).get(MainActivityViewModel.class);
+        sharedPref = getSharedPreferences("application", Context.MODE_PRIVATE);
 
         final Observer<Integer> scoreObserver = new Observer<Integer>() {
             @Override
             public void onChanged(@Nullable final Integer newScore) {
-                highScore.setText(readHighScore());
-                prevScore.setText(readPrevScore());
+                highScore.setText(sharedPref.getString("HIGH_SCORE", "0"));
+                prevScore.setText(sharedPref.getString("PREV_SCORE", "0"));
             }
         };
 
@@ -49,12 +52,4 @@ public class MainActivity extends AppCompatActivity {
         MainActivity.this.startActivity(whackIntent);
     }
 
-    String readHighScore() {
-        SharedPreferences sharedPref = getSharedPreferences("application", Context.MODE_PRIVATE);
-        return sharedPref.getString("HIGH_SCORE", "0");
-    }
-    String readPrevScore() {
-        SharedPreferences sharedPref = getSharedPreferences("application", Context.MODE_PRIVATE);
-        return sharedPref.getString("PREV_SCORE", "0");
-    }
 }
