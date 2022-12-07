@@ -123,6 +123,6 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_below="@+id/topPanel"
-        android:layout_above="@+id/tip"></com.example.a2048test.GameView>
+        android:layout_above="@+id/tip" />
 
 </RelativeLayout>
